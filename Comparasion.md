@@ -1,3 +1,5 @@
+Comparasion between GoLang and JS
+
 # Equivalent of `npm init` in Go
 
 ```bash
