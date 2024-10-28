@@ -24,9 +24,12 @@ func SetupRoutes(app *fiber.App, coll *mongo.Collection) {
 
 	app.Get("/api/todo", GetToDo)
 	app.Post("/api/todo", PostToDo)
+	app.Patch("/api/todo/:id", PatchToDo)
+	app.Delete("/api/todo/:id", DeleteToDo)
 }
 
 // Define handlers for each route
+
 // Get ToDo's Requests
 func GetToDo(c *fiber.Ctx) error {
 	var todos []Todo
@@ -78,16 +81,40 @@ func PostToDo(c *fiber.Ctx) error {
 	return c.Status(201).JSON(todo)
 }
 
-// func PatchToDo(c *fiber.Ctx) error {
-// 	// Placeholder response for updating a todo
-// 	return c.JSON(fiber.Map{"message": "Patch Todo"})
-// }
+// Patch ToDo's Requests
+func PatchToDo(c *fiber.Ctx) error {
+	id := c.Params("id")
+	objectID,err := primitive.ObjectIDFromHex(id)
+	if HandleError(c, err) {
+		return nil
+	}
+	filter := bson.M{"_id": objectID}
+	update := bson.M{"$set": bson.M{"completed": true}}
 
-// func DeleteToDo(c *fiber.Ctx) error {
-// 	// Placeholder response for deleting a todo
-// 	return c.JSON(fiber.Map{"message": "Delete Todo"})
-// }
+	_, err = collection.UpdateOne(context.Background(), filter, update)
+	if HandleError(c, err) {
+		return nil
+	}
 
+	return c.JSON(fiber.Map{"message": "Todo was completed"})
+}
+
+// Delete ToDo's Requests
+func DeleteToDo(c *fiber.Ctx) error {
+	id := c.Params("id")
+	objectID,err := primitive.ObjectIDFromHex(id)
+	if HandleError(c, err) {
+		return nil
+	}
+	filter := bson.M{"_id": objectID}
+	_, err = collection.DeleteOne(context.Background(), filter)
+	if HandleError(c, err) {
+		return nil
+	}
+	return c.JSON(fiber.Map{"message": "Todo was deleted"})
+}
+
+// HandleError is a helper function that logs the error and sends a JSON response
 func HandleError(c *fiber.Ctx, err error) bool {
 	if err != nil {
 		log.Println("There was an error in the code:", err)
