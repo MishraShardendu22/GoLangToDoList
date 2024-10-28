@@ -6,7 +6,6 @@ import (
 	"os"
 
 	"github.com/ShardenduMishra22/GoLangToDoList/database"
-	"github.com/ShardenduMishra22/GoLangToDoList/routes"
 	"github.com/gofiber/fiber/v2"
 	"github.com/joho/godotenv"
 )
