@@ -8,8 +8,12 @@ import (
 	"github.com/ShardenduMishra22/GoLangToDoList/database"
 	"github.com/ShardenduMishra22/GoLangToDoList/routes"
 	"github.com/gofiber/fiber/v2"
+	"github.com/gofiber/fiber/v2/middleware/cors"
 	"github.com/joho/godotenv"
+	"go.mongodb.org/mongo-driver/mongo"
 )
+
+var collection *mongo.Collection // Declare a global variable to hold the collection
 
 func main() {
 	fmt.Println("ToDo List Project!!")
@@ -18,8 +22,17 @@ func main() {
 	if err != nil {
 		log.Fatal("Error loading .env file")
 	}
-	database.ConnectToDatabase()
+
+	// Connect to the database and get the collection
+	collection = database.ConnectToDatabase() // Store the collection
+
 	app := fiber.New()
+	// CORS middleware
+	app.Use(cors.New(cors.Config{
+		AllowOrigins: "http://localhost:5173", // Replace with your frontend's origin
+		AllowMethods: "GET,POST,HEAD,PUT,DELETE,OPTIONS",
+		AllowHeaders: "Origin, Content-Type, Accept",
+	}))
 
 	app.Get("/", func(c *fiber.Ctx) error {
 		return c.JSON(fiber.Map{
@@ -28,19 +41,13 @@ func main() {
 		})
 	})
 
-	// Define todo routes using the routes package functions
-	app.Get("/api/todo", routes.GetToDo)
-	// app.Post("/api/todo", routes.PostToDo)
-	// app.Patch("/api/todo", routes.PatchToDo)
-	// app.Delete("/api/todo", routes.DeleteToDo)
+	routes.SetupRoutes(app, collection) // Pass the collection to the routes
 
-	// Get the port from the environment or default to 4000
 	port := os.Getenv("PORT")
 	if port == "" {
 		port = "4000"
 	}
 
-	// Start the Fiber server
 	log.Fatal(app.Listen("0.0.0.0:" + port))
 }
 
