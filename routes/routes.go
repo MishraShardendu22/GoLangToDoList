@@ -102,17 +102,25 @@ func PostToDo(c *fiber.Ctx) error {
 // Patch ToDo's Requests
 func PatchToDo(c *fiber.Ctx) error {
 	id := c.Params("id")
+	fmt.Println(id)
+	fmt.Println("Check - 1")
+
 	objectID,err := primitive.ObjectIDFromHex(id)
 	if HandleError(c, err) {
 		return nil
 	}
+	fmt.Println(objectID)
+	fmt.Println("Check - 2")
+
 	filter := bson.M{"_id": objectID}
 	update := bson.M{"$set": bson.M{"completed": true}}
 
-	_, err = collection.UpdateOne(context.Background(), filter, update)
+	UpdateResults, err := collection.UpdateOne(context.Background(), filter, update)
 	if HandleError(c, err) {
 		return nil
 	}
+	fmt.Println(UpdateResults)
+	fmt.Println("Check - 3")
 
 	return c.JSON(fiber.Map{"message": "Todo was completed"})
 }
