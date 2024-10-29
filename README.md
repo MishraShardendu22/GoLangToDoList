@@ -1,11 +1,9 @@
 # [ToDo App](https://golangtodo-front.onrender.com/)
 
-A simple To-Do Application !!
-
 ## [FrontEnd - Github repository](https://github.com/ShardenduMishra22/GoLangToDo-Front)
 ## [BackEnd - Github repository](https://github.com/ShardenduMishra22/GoLangToDo-Back)
 
-## About The Project
+## About The Project - A simple To-Do Application !!
 This is a simple ToDo application built using a modern tech stack. The front end is developed with TypeScript, ShadCN, Tailwind CSS, and Vite, while the back end is powered by Go. The app allows users to create, update, and delete tasks seamlessly.
 
 ## Features
