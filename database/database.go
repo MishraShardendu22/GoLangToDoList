@@ -15,11 +15,12 @@ func ConnectToDatabase() *mongo.Collection {
 	}
 
 	clientOptions := options.Client().ApplyURI(mongoURI)
-    client, err := mongo.Connect(context.Background(), clientOptions)
-    if err != nil {
-        log.Fatalf("MongoDB Connection Error: %v", err)
-    }    
+    	client, err := mongo.Connect(context.Background(), clientOptions)
+    	if err != nil {
+		log.Fatalf("MongoDB Connection Error: %v", err)
+         }    
 
+	
 	err = client.Ping(context.Background(), nil)
 	if err != nil {
 		log.Fatal(err)
