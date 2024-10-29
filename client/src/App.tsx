@@ -5,8 +5,6 @@ import { Toaster } from '@/components/ui/toaster';
 import { motion } from 'framer-motion';
 
 
-export const BASE_URL = import.meta.env.MODE === "development" ? "http://localhost:5000/api" : "/api";
-
 const App = () => {
   return (
     <Router>
