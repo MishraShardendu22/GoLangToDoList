@@ -13,14 +13,20 @@ This is a simple ToDo application built using a modern tech stack. The front end
 ## Tech Stack
 
 - **Frontend**:
-  - ![TypeScript](https://img.shields.io/badge/TypeScript-007ACC?style=flat&logo=typescript&logoColor=white) **TypeScript**: A superset of JavaScript that adds static typing, enhancing code quality and maintainability.
-  - ![ShadCN](https://img.shields.io/badge/ShadCN-4A5568?style=flat&logo=vue.js&logoColor=white) **ShadCN**: A component library for building UI elements quickly with customizable styles and easy integration into projects.
-  - ![Tailwind CSS](https://img.shields.io/badge/Tailwind%20CSS-06B6D4?style=flat&logo=tailwind-css&logoColor=white) **Tailwind CSS**: A utility-first CSS framework that enables rapid UI development with a set of pre-defined classes for styling.
-  - ![Framer Motion](https://img.shields.io/badge/Framer%20Motion-000000?style=flat&logo=framer&logoColor=white) **Framer Motion**: A library for animations and transitions in React applications, providing smooth and customizable animations.
-  - ![Vite](https://img.shields.io/badge/Vite-646CFF?style=flat&logo=vite&logoColor=white) **Vite**: A modern build tool that offers fast development and optimized production builds with support for hot module replacement.
+  - ![TypeScript](https://img.shields.io/badge/TypeScript-007ACC?style=flat&logo=typescript&logoColor=white)
+    **TypeScript**: A superset of JavaScript that adds static typing, enhancing code quality and maintainability.
+  - ![ShadCN](https://img.shields.io/badge/ShadCN-4A5568?style=flat&logo=vue.js&logoColor=white)
+    **ShadCN**: A component library for building UI elements quickly with customizable styles and easy integration into projects.
+  - ![Tailwind CSS](https://img.shields.io/badge/Tailwind%20CSS-06B6D4?style=flat&logo=tailwind-css&logoColor=white)
+    **Tailwind CSS**: A utility-first CSS framework that enables rapid UI development with a set of pre-defined classes for styling.
+  - ![Framer Motion](https://img.shields.io/badge/Framer%20Motion-000000?style=flat&logo=framer&logoColor=white)
+    **Framer Motion**: A library for animations and transitions in React applications, providing smooth and customizable animations.
+  - ![Vite](https://img.shields.io/badge/Vite-646CFF?style=flat&logo=vite&logoColor=white)
+    **Vite**: A modern build tool that offers fast development and optimized production builds with support for hot module replacement.
 
 - **Backend**:
-  - ![Go](https://img.shields.io/badge/Go-00ADD8?style=flat&logo=go&logoColor=white) **Go**: A statically typed, compiled programming language known for its simplicity and performance, ideal for building scalable web services and applications.
+  - ![Go](https://img.shields.io/badge/Go-00ADD8?style=flat&logo=go&logoColor=white)
+    **Go**: A statically typed, compiled programming language known for its simplicity and performance, ideal for building scalable web services and applications.
 
 ## Installation
 
