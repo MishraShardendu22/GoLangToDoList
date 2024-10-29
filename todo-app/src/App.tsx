@@ -1,11 +1,17 @@
-import Navbar from './components/Navbar'
+import React from 'react';
+import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
+import Home from './components/Home';
+import { Toaster } from '@/components/ui/toaster';
 
-function App() {
+const App = () => {
   return (
-    <div>
-      <Navbar />
-    </div>
-  )
-}
+    <Router>
+      <Routes>
+        <Route path="/" element={<Home />} />
+      </Routes>
+      <Toaster />
+    </Router>
+  );
+};
 
-export default App
+export default App;

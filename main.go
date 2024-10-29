@@ -29,8 +29,8 @@ func main() {
 	app := fiber.New()
 	// CORS middleware
 	app.Use(cors.New(cors.Config{
-		AllowOrigins: "http://localhost:5173", // Replace with your frontend's origin
-		AllowMethods: "GET,POST,HEAD,PUT,DELETE,OPTIONS",
+		AllowOrigins: "http://localhost:5173/", // Replace with your frontend's origin
+		AllowMethods: "GET,POST,HEAD,PATCH,DELETE",
 		AllowHeaders: "Origin, Content-Type, Accept",
 	}))
 
