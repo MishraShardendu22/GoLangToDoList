@@ -2,6 +2,7 @@ package routes
 
 import (
 	"context"
+	"fmt"
 	"log"
 
 	"github.com/gofiber/fiber/v2"
@@ -36,6 +37,9 @@ func GetToDo(c *fiber.Ctx) error {
 
 	// bson.M{} is an empty filter that fetches all documents in the collection
 	cursor, err := collection.Find(context.Background(), bson.M{})
+	fmt.Println(cursor)
+	fmt.Println("Check - 1")
+
 	if HandleError(c, err) {
 		return nil // Error handled; exit function
 	}
@@ -43,8 +47,14 @@ func GetToDo(c *fiber.Ctx) error {
 
 	// Iterate through each document in the cursor
 	for cursor.Next(context.Background()) {
+		fmt.Println(cursor.Next(context.Background()))
+		fmt.Println("Check - 2")
 		var todo Todo
+		fmt.Println(cursor.Decode(&todo))
+		fmt.Println("Check - 3")
 		err := cursor.Decode(&todo) // Decode each document into a Todo struct
+		fmt.Println("Check - 4")
+		fmt.Println(todo)
 		if HandleError(c, err) {
 			return nil // Error handled; exit function
 		}
@@ -57,9 +67,13 @@ func GetToDo(c *fiber.Ctx) error {
 
 // Post ToDo's Requests
 func PostToDo(c *fiber.Ctx) error {
+	// todo := new(Todo) alternate way to initialize the struct
 	todo := Todo{}
 
 	err := c.BodyParser(&todo)
+	fmt.Println(todo)
+	fmt.Println("Check - 1")
+	
 	if HandleError(c, err) {
 		return nil
 	}
@@ -73,9 +87,13 @@ func PostToDo(c *fiber.Ctx) error {
 	if HandleError(c, err) {
 		return nil
 	}
+	fmt.Println(insertResult)
+	fmt.Println("Check - 2")
 
 	// Set the ID of the inserted Todo
 	todo.ID = insertResult.InsertedID.(primitive.ObjectID)
+	fmt.Println(todo)
+	fmt.Println("Check - 3")
 
 	// Return the inserted Todo with status 201
 	return c.Status(201).JSON(todo)
